@@ -1,0 +1,69 @@
+{% load static %}
+<!-- Footer -->
+<style>
+    .footer {
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-footer col-md-4 col-xs-6">
+                <h3>Contacto</h3>
+                <p class="contact-us-details">
+                    <b>Address:</b> {{ configuracion.direccion_negocio }}
+                    <br />
+                    <b>Teléfono:</b> {{ configuracion.telefono_negocio }}
+                    <br />
+                    <b>Fax:</b> {{ configuracion.telefono_negocio }}
+                    <br />
+                    <b>Correo electrónico:</b> <a href="mailto:{{ configuracion.correo_negocio }}">{{ configuracion.correo_negocio }}</a>
+                </p>
+            </div>
+            <div class="col-footer col-md-4 col-xs-6">
+                <h3>Redes sociales</h3>
+                <p>Siga a nuestra página en redes sociales para obtener más información.</p>
+                <div>
+                    <a href="{{ configuracion.red_social_facebook_negocio }}"
+                       target="_blank">
+                        <img src="{% static 'img/icons/facebook.png' %}" width="32" alt="Facebook">
+                    </a>
+                    <a href="{{ configuracion.red_social_x_negocio }}" target="_blank">
+                        <img src="{% static 'img/icons/twitter.png' %}" width="32" alt="Twitter">
+                    </a>
+                    <a href="{{ configuracion.red_social_instagram_negocio }}"
+                       target="_blank">
+                        <img src="{% static 'img/icons/linkedin.png' %}" width="32" alt="LinkedIn">
+                    </a>
+                    {% comment %} <a href="{{ configuracion.pagina_web_negocio }}" target="_blank">
+                        <img src="{% static 'img/icons/rss.png' %}" width="32" alt="RSS Feed">
+                    </a> {% endcomment %}
+                </div>
+            </div>
+            <div class="col-footer col-md-4 col-xs-6">
+                <h3>Sobre Nuestra Empresa</h3>
+                <p>
+                    Somos una empresa dedicada a la organización de eventos sociales, ofreciendo servicios personalizados para hacer de cada evento una experiencia única e inolvidable. Nuestro equipo de profesionales se encarga de cada detalle, desde la planificación hasta la ejecución, asegurando la máxima satisfacción de nuestros clientes.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="footer-copyright">
+                    &copy; 2024 {{ configuracion.nombre_negocio }} . By <a href="{{ configuracion.pagina_web_negocio }}">{{ configuracion.nombre_negocio }}</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Javascripts -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write(`<script src="{% static 'js/jquery-1.9.1.min.js' %}"><\/script>`)</script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- Scrolling Nav JavaScript -->
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'js/scrolling-nav.js' %}"></script>

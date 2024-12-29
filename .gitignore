@@ -1,0 +1,23 @@
+# Django specific
+*.log
+*.pot
+*.pyc
+__pycache__/
+media
+
+migrations/
+
+# Environments
+*.venv
+
+# VS Code
+.vscode/
+
+staticfiles
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so

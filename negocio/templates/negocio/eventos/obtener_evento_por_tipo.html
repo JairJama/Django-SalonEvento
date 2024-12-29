@@ -1,0 +1,123 @@
+{% extends "main/base/base.html" %}
+{% load static %}
+{% block content %}
+    <style>
+        .search-bar-container {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-bar input[type="text"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            font-size: 18px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            color: #0056b3;
+        }
+
+        .close-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #aec62c;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-button:hover {
+            background-color: #c82333;
+        }
+
+        .evento-imagen {
+            width: 300px; 
+            height: 200px; 
+            object-fit: cover; 
+            display: block;
+        }
+    </style>
+    {% include 'main/componentes/ui/title.html' with titulo=tipo_evento_nombre %}
+    <div class="section section-white">
+        <!-- Barra de búsqueda -->
+        <div class="search-bar-container">
+            <form method="GET" class="search-bar" action="">
+                <input type="text"
+                       name="query"
+                       placeholder="Busca un evento por nombre o descripción...">
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+            <a href="{% url 'negocio:listar_eventos_por_tipo' tipo_evento_id %}"
+               class="close-button">Cerrar</a>
+        </div>
+        {% if eventos %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid cs-style-3">
+                            {% for evento in eventos %}
+                                <div class="col-md-4 col-sm-6">
+                                    <figure>
+                                        <img src="{% if evento.foto %}{{ evento.foto.imagen.url }}{% else %}{% static 'img/404.jpg' %}{% endif %}"
+                                             alt="{{ evento.evento.nombre }}"
+                                             class="evento-imagen">
+                                        <figcaption>
+                                            <h3>{{ evento.evento.nombre }}</h3>
+                                            <p>{{ evento.evento.descripcion }}</p>
+                                            <a href="{% url 'negocio:obtener_evento' evento.evento.id %}">Ver más</a>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">No hay eventos con este tipo</h4>
+                    <p>No se han creado eventos de este tipo.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
